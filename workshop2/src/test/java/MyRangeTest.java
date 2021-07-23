@@ -5,21 +5,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MyRangeTest {
     @Test
-    @DisplayName("ทดสอบเคส [1,5] ขึ้นด้วย [ ผลที่ได้คือ false")
+    @DisplayName("ทดสอบเคส [1,5] ขึ้นด้วย [ ผลที่ได้คือ true")
     public  void caseCheckStartWithInclude(){
         String inputNumber = "[1,5]";
         MyRange myRange = new MyRange(inputNumber);
-        boolean result = myRange.isStartWithExclude(inputNumber);
-        assertFalse(result);
+        boolean result = myRange.isStartWithInclude(inputNumber);
+        assertTrue(result);
     }
 
     @Test
-    @DisplayName("ทดสอบเคส [1,5] ลงท้ายด้วย ] ผลที่ได้คือ false")
+    @DisplayName("ทดสอบเคส [1,5] ลงท้ายด้วย ] ผลที่ได้คือ true")
     public  void caseCheckEndWithInclude(){
         String inputNumber = "[1,5]";
         MyRange myRange = new MyRange(inputNumber);
-        boolean result = myRange.isStartWithExclude(inputNumber);
-        assertFalse(result);
+        boolean result = myRange.isStartWithInclude(inputNumber);
+        assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("ทดสอบแปลง character เป็น int '1' ผลที่ได้ต้องได้ 1")
+    public  void caseConvertNumber(){
+        String inputNumber = "[1,5]";
+        MyRange myRange = new MyRange(inputNumber);
+        int result = myRange.convertCharacterToInteger('1');
+        assertEquals(result,1);
     }
 
     @Test
