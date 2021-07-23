@@ -10,7 +10,7 @@ class MyRangeTest {
         String inputNumber = "[1,5]";
         MyRange myRange = new MyRange(inputNumber);
         boolean result = myRange.isStartWithExclude(inputNumber);
-        assertEquals(false,result);
+        assertFalse(result);
     }
 
     @Test
@@ -19,7 +19,7 @@ class MyRangeTest {
         String inputNumber = "[1,5]";
         MyRange myRange = new MyRange(inputNumber);
         boolean result = myRange.isStartWithExclude(inputNumber);
-        assertEquals(false,result);
+        assertFalse(result);
     }
 
     @Test
