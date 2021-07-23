@@ -1,33 +1,49 @@
 public class MyRange {
-    private String inputNumber;
+    private final String inputNumber;
+    private static final char ASCII_VALUE = 48;
+    private int indexOfComma;
     public MyRange(String inputNumber){
         this.inputNumber = inputNumber;
+        this.indexOfComma = inputNumber.indexOf(",");
     }
     public String FindNumberInput(){
         String result = "";
         if(inputNumber != null) {
-            int indexOfComma = inputNumber.indexOf(",");
-            char firstCharacterNumber = inputNumber.charAt(indexOfComma-1);
-            char lastCharacterNumber = inputNumber.charAt(indexOfComma+1);
-            int firstNumber = convertCharacterToInteger(firstCharacterNumber);
-            int lastNumber = convertCharacterToInteger(lastCharacterNumber);
+            int firstNumber = getFirstNumber();
+            int lastNumber = getLastNumber();
             if(!isStartWithInclude(inputNumber)){
                 firstNumber++;
             }
             if(!isEndWithInclude(inputNumber)){
                 lastNumber--;
             }
-            for(int i = firstNumber; i <= lastNumber; i++){
-                if(i == lastNumber){
-                    result += i ;
-                }
-                else {
-                    result += i + ",";
-                }
+            result = generateResult(result, firstNumber, lastNumber);
+        }
+        return result;
+    }
+
+    public int getFirstNumber(){
+        char firstCharacterNumber = inputNumber.charAt(this.indexOfComma-1);
+        return convertCharacterToInteger(firstCharacterNumber);
+    }
+
+    public int getLastNumber(){
+        char lastCharacterNumber = inputNumber.charAt(this.indexOfComma+1);
+        return convertCharacterToInteger(lastCharacterNumber);
+    }
+
+    private String generateResult(String result, int firstNumber, int lastNumber) {
+        for(int i = firstNumber; i <= lastNumber; i++){
+            if(i == lastNumber){
+                result += i ;
+            }
+            else {
+                result += i + ",";
             }
         }
         return result;
     }
+
     public boolean isStartWithInclude(String input){
         return input.startsWith("[");
     }
@@ -35,7 +51,7 @@ public class MyRange {
         return input.endsWith("]");
     }
     public int convertCharacterToInteger(char character){
-        return character - '0';
+        return character - ASCII_VALUE;
     }
 
 }
